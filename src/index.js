@@ -49,16 +49,11 @@ h1.innerHTML = `${day}, ${month} ${date}, ${hours}:${minutes}`;
 function displayTemperature(response) {
   console.log(response.data);
   let temperatureElement = document.querySelector("#temperature");
-  console.log(temperatureElement);
-
   let temperature = Math.round(response.data.temperature.current);
   let cityElement = document.querySelector("#current-city");
   cityElement.innerHTML = response.data.city;
   temperatureElement.innerHTML = temperature;
 }
-let form = document.querySelector("#city-form");
-form.addEventListener("submit", searchCity);
-
 function searchCity(event) {
   event.preventDefault();
   let searchCityInput = document.querySelector("#search-city-input");
@@ -69,6 +64,8 @@ function searchCity(event) {
 
   axios.get(apiUrl).then(displayTemperature);
 }
+let form = document.querySelector("#city-form");
+form.addEventListener("submit", searchCity);
 
 function changeUnitFahren(event) {
   event.preventDefault();
